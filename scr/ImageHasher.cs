@@ -61,9 +61,9 @@ namespace Imagehasher
 			int width = 8;
 			int height = 8;
 			byte[] grayscaleBytes;
-			using (Bitmap bitmap = ImageUtils.ReduceImage(image, width, height))
+			using (Bitmap bitmap = ImageHasherUtils.ReduceImage(image, width, height))
 			{
-				grayscaleBytes = ImageUtils.GetGrayscaleBytes(bitmap);
+				grayscaleBytes = ImageHasherUtils.GetGrayscaleBytes(bitmap);
 			}
 			foreach (byte b in grayscaleBytes)
 			{
@@ -87,9 +87,9 @@ namespace Imagehasher
 			int height = 8;
 			int num3 = 0;
 			byte[] grayscaleBytes;
-			using (Bitmap bitmap = ImageUtils.ReduceImage(image, num2, height))
+			using (Bitmap bitmap = ImageHasherUtils.ReduceImage(image, num2, height))
 			{
-				grayscaleBytes = ImageUtils.GetGrayscaleBytes(bitmap);
+				grayscaleBytes = ImageHasherUtils.GetGrayscaleBytes(bitmap);
 			}
 			for (int i = 0; i < grayscaleBytes.Length; i++)
 			{

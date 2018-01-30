@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 
 namespace Imagehasher
 {
-	public static class ImageUtils
+	public static class ImageHasherUtils
 	{
 		public static Bitmap ReduceImage(Image image, int width, int height)
 		{
@@ -24,7 +24,7 @@ namespace Imagehasher
 		public static Bitmap GrayscaleImage(Bitmap bmp)
 		{
 			Bitmap bitmap = new Bitmap(bmp.Width, bmp.Height, PixelFormat.Format24bppRgb);
-			byte[] grayscaleBytes = ImageUtils.GetGrayscaleBytes(bmp);
+			byte[] grayscaleBytes = ImageHasherUtils.GetGrayscaleBytes(bmp);
 			int num = 0;
 			for (int i = 0; i < bmp.Height; i++)
 			{
