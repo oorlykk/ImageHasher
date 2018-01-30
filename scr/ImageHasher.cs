@@ -10,22 +10,22 @@ namespace Imagehasher
 		{
 			for (int i = 0; i < 256; i++)
 			{
-				ImageHasher.BitCounts8[i] = (byte)ImageHasher.CountSetBits(i);
+				BitCounts8[i] = (byte)CountSetBits(i);
 			}
 			for (int j = 0; j < 65536; j++)
 			{
 				int num = 0;
 				for (int k = j; k > 0; k >>= 8)
 				{
-					num += (int)ImageHasher.BitCounts8[k & 255];
+					num += (int)BitCounts8[k & 255];
 				}
-				ImageHasher.BitCounts16[j] = (ushort)num;
+				BitCounts16[j] = (ushort)num;
 			}
 		}
 
 		private static int CountSetBits(int n)
 		{
-			return ImageHasher.CountSetBits((ulong)((long)n));
+			return CountSetBits((ulong)((long)n));
 		}
 
 		private static int CountSetBits(ulong n)
@@ -46,12 +46,18 @@ namespace Imagehasher
 		public static int ComputeHammingDistance(ulong n1, ulong n2)
 		{
 			ulong num = n1 ^ n2;
-			return (int)(ImageHasher.BitCounts16[(int)(checked((IntPtr)((num & 18446462598732840960UL) >> 48)))] + ImageHasher.BitCounts16[(int)(checked((IntPtr)((num & 281470681743360UL) >> 32)))] + ImageHasher.BitCounts16[(int)(checked((IntPtr)((num & unchecked((ulong)-65536)) >> 16)))] + ImageHasher.BitCounts16[(int)(checked((IntPtr)(num & 65535UL)))]);
+
+			return (int)(BitCounts16[(int)(checked((IntPtr)((num & 18446462598732840960UL) >> 48)))] + 
+                BitCounts16[(int)(checked((IntPtr)((num & 281470681743360UL) >> 32)))] + 
+                BitCounts16[(int)(checked((IntPtr)((num & unchecked((ulong)-65536)) >> 16)))] + 
+                BitCounts16[(int)(checked((IntPtr)(num & 65535UL)))]);
 		}
 
-		public static double ComputeSimilarity(ulong hash1, ulong hash2)
-		{
-			return (double)(64 - ImageHasher.ComputeHammingDistance(hash1, hash2)) * 0.015625;
+		public static double ComputeSimilarity(ulong hash1, ulong hash2) 
+        {
+
+            return (double)(64 - ComputeHammingDistance(hash1, hash2)) * 0.015625;
+
 		}
 
 		public static ulong ComputeAverageHash(Image image)
