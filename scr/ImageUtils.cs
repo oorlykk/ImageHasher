@@ -5,8 +5,10 @@ using System.Drawing.Imaging;
 
 namespace Imagehasher
 {
-	public static class ImageHasherUtils
+	// Token: 0x02000002 RID: 2
+	public static class ImageUtils
 	{
+		// Token: 0x06000001 RID: 1 RVA: 0x00002050 File Offset: 0x00000250
 		public static Bitmap ReduceImage(Image image, int width, int height)
 		{
 			Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format24bppRgb);
@@ -21,10 +23,11 @@ namespace Imagehasher
 			return bitmap;
 		}
 
+		// Token: 0x06000002 RID: 2 RVA: 0x000020B8 File Offset: 0x000002B8
 		public static Bitmap GrayscaleImage(Bitmap bmp)
 		{
 			Bitmap bitmap = new Bitmap(bmp.Width, bmp.Height, PixelFormat.Format24bppRgb);
-			byte[] grayscaleBytes = ImageHasherUtils.GetGrayscaleBytes(bmp);
+			byte[] grayscaleBytes = ImageUtils.GetGrayscaleBytes(bmp);
 			int num = 0;
 			for (int i = 0; i < bmp.Height; i++)
 			{
@@ -39,6 +42,7 @@ namespace Imagehasher
 			return bitmap;
 		}
 
+		// Token: 0x06000003 RID: 3 RVA: 0x00002130 File Offset: 0x00000330
 		public static byte[] GetGrayscaleBytes(Bitmap bmp)
 		{
 			byte[] array = new byte[bmp.Height * bmp.Width];
