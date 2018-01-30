@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace ImageHasher
+namespace Imagehasher
 {
 	public static class ImageHasher
 	{
